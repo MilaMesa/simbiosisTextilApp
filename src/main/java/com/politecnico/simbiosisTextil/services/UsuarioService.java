@@ -21,7 +21,7 @@ public class UsuarioService {
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
             Perfil perfil = new Perfil();
-            perfil.setNombre(String.format("%s %s", usuario.getNombres(), usuario.getApellidos()));
+            perfil.setNombre(String.format("%s %s", usuario.getNombre(), usuario.getApellido()));
             return perfil;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("No se obtuvo usuario con la identificacion %s", identificacion));
