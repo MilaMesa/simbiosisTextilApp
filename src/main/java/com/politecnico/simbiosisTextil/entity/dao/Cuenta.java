@@ -7,19 +7,19 @@ import javax.persistence.*;
 public class Cuenta {
     @Id
     @Column(name="Usuario_Cu", length = 15)
-    private String nombre_usuario;
+    private String nombreUsuario;
     @Column(name="Password_Cu", length = 30, nullable= false)
     private String password;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "NumeroIdentificacion_Us", nullable= false)
     private Usuario usuario;
 
-    public String getNombre_usuario() {
-        return nombre_usuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNombre_usuario(String nombre_usuario) {
-        this.nombre_usuario = nombre_usuario;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {
