@@ -11,7 +11,7 @@ public class Cuenta {
     @Column(name="Password_Cu", length = 30, nullable= false)
     private String password;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NumeroIdentificacion_Us", nullable= false)
+    @JoinColumn(name = "NumeroIdentificacion_Cu", referencedColumnName = "NumeroIdentificacion_Us", nullable= false)
     private Usuario usuario;
 
     public String getNombreUsuario() {
