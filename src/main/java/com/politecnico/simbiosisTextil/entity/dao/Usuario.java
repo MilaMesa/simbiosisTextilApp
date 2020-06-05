@@ -17,11 +17,11 @@ public class Usuario {
     private String nombre;
     @Column(name = "Apellido_Us", length=40, nullable= false)
     private String apellido;
-    @Column(name="Telefono_Us", length=8)
+    @Column(name="Telefono_Us", length=7)
     private Character[] telefono;
-    @Column(name = "Celular_Us", length = 12, nullable= false)
+    @Column(name = "Celular_Us", length = 10, nullable= false)
     private String celular;
-    @Column(name= "Direccion_Us", length = 25)
+    @Column(name= "Direccion_Us", length = 50)
     private String direccion;
     @Column(name="NombreEmpresa_Us", length = 25, nullable= false)
     private String nombreEmpresa;
