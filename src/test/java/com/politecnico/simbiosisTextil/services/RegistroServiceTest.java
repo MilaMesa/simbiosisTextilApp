@@ -1,5 +1,6 @@
 package com.politecnico.simbiosisTextil.services;
 
+import com.politecnico.simbiosisTextil.controller.dto.Registro;
 import com.politecnico.simbiosisTextil.entity.CuentaDao;
 import com.politecnico.simbiosisTextil.entity.dao.Cuenta;
 import org.junit.jupiter.api.Assertions;
@@ -8,12 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 import java.util.Optional;
 
 @SpringBootTest
-class CuentaServiceTest {
+class RegistroServiceTest {
     @InjectMocks
     private CuentaService cuentaService;
 
@@ -28,14 +28,14 @@ class CuentaServiceTest {
         cuentaBd.setNombreUsuario("usuario2");
         cuentaBd.setPassword("123");
         Mockito.when(cuentaDao.findById("usuario2")).thenReturn(Optional.of(cuentaBd));
-        com.politecnico.simbiosisTextil.controller.dto.Cuenta cuentaFront = new com.politecnico.simbiosisTextil.controller.dto.Cuenta();
-        cuentaFront.setUsuario("usuario2");
-        cuentaFront.setPassword("123");
+        Registro registroFront = new Registro();
+        registroFront.setUsuario("usuario2");
+        registroFront.setPassword("123");
 
         //Action ejecutar la prueba
-        com.politecnico.simbiosisTextil.controller.dto.Cuenta cuentaValida = cuentaService.validarLogin(cuentaFront);
+        Registro registroValida = cuentaService.validarLogin(registroFront);
 
         //Assert validar que el resultado es el esperado
-        Assertions.assertFalse(cuentaValida.isError(), "El login no fue exitoso");
+        Assertions.assertFalse(registroValida.isError(), "El login no fue exitoso");
     }
 }

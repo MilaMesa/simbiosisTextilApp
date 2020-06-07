@@ -1,48 +1,49 @@
-package com.politecnico.simbiosisTextil.entity.dao;
+package com.politecnico.simbiosisTextil.controller.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "USUARIO")
-public class Usuario {
-    @Id
-    @Column(name = "NumeroIdentificacion_Us", length = 11)
+public class Registro {
+    private String usuario;
+    private String password;
     private long numeroIdentificacion;
-    @Column(name = "TipoIdentificacion_Us", nullable= false)
-    private TipoIdentificacion tipoIdentificacion;
-    @Column(name = "Nombre_Us", length=40, nullable= false)
+    private String tipoIdentificacion;
     private String nombre;
-    @Column(name = "Apellido_Us", length=40, nullable= false)
     private String apellido;
-    @Column(name="Telefono_Us", length=7)
-    private char[] telefono;
-    @Column(name = "Celular_Us", length = 10, nullable= false)
+    private String telefono;
     private String celular;
-    @Column(name= "Direccion_Us", length = 50)
     private String direccion;
-    @Column(name="NombreEmpresa_Us", length = 25, nullable= false)
     private String nombreEmpresa;
-    @Column(name="TipoUsuario_Us", nullable= false)
-    private TipoUsuario tipoUsuario;
-    @Column(name="Correo_Us", nullable= false, length = 30)
-    private  String correo;
+    private String tipoUsuario;
+    private String correo;
+    private boolean error;
 
-    public Long getNumeroIdentificacion() {
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public long getNumeroIdentificacion() {
         return numeroIdentificacion;
     }
 
-    public void setNumeroIdentificacion(Long numeroIdentificacion) {
+    public void setNumeroIdentificacion(long numeroIdentificacion) {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    public TipoIdentificacion getTipoIdentificacion() {
+    public String getTipoIdentificacion() {
         return tipoIdentificacion;
     }
 
-    public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
+    public void setTipoIdentificacion(String tipoIdentificacion) {
         this.tipoIdentificacion = tipoIdentificacion;
     }
 
@@ -62,11 +63,11 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public char[] getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(char[] telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -94,11 +95,11 @@ public class Usuario {
         this.nombreEmpresa = nombreEmpresa;
     }
 
-    public TipoUsuario getTipoUsuario() {
+    public String getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+    public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 
@@ -108,5 +109,13 @@ public class Usuario {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
     }
 }
