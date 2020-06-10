@@ -1,9 +1,6 @@
 package com.politecnico.simbiosisTextil.entity.dao;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "USUARIO")
@@ -11,24 +8,26 @@ public class Usuario {
     @Id
     @Column(name = "NumeroIdentificacion_Us", length = 11)
     private long numeroIdentificacion;
-    @Column(name = "TipoIdentificacion_Us", nullable= false)
+    @Column(name = "TipoIdentificacion_Us", nullable = false)
     private TipoIdentificacion tipoIdentificacion;
-    @Column(name = "Nombre_Us", length=40, nullable= false)
+    @Column(name = "Nombre_Us", length = 40, nullable = false)
     private String nombre;
-    @Column(name = "Apellido_Us", length=40, nullable= false)
+    @Column(name = "Apellido_Us", length = 40, nullable = false)
     private String apellido;
-    @Column(name="Telefono_Us", length=7)
+    @Column(name = "Telefono_Us", length = 7)
     private char[] telefono;
-    @Column(name = "Celular_Us", length = 10, nullable= false)
+    @Column(name = "Celular_Us", length = 10, nullable = false)
     private String celular;
-    @Column(name= "Direccion_Us", length = 50)
+    @Column(name = "Direccion_Us", length = 50)
     private String direccion;
-    @Column(name="NombreEmpresa_Us", length = 25, nullable= false)
+    @Column(name = "NombreEmpresa_Us", length = 25, nullable = false)
     private String nombreEmpresa;
-    @Column(name="TipoUsuario_Us", nullable= false)
+    @Column(name = "TipoUsuario_Us", nullable = false)
     private TipoUsuario tipoUsuario;
-    @Column(name="Correo_Us", nullable= false, length = 30)
-    private  String correo;
+    @Column(name = "Correo_Us", nullable = false, length = 30)
+    private String correo;
+    @OneToOne(mappedBy = "usuario")
+    private Cuenta cuenta;
 
     public Long getNumeroIdentificacion() {
         return numeroIdentificacion;
@@ -108,5 +107,13 @@ public class Usuario {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 }

@@ -28,8 +28,9 @@ public class CuentaService {
         } else {
             Optional<Cuenta> cuentaUsuario = cuentaDao.findById(registro.getUsuario());
             if (cuentaUsuario.isPresent()) {
-                com.politecnico.simbiosisTextil.entity.dao.Cuenta password = cuentaUsuario.get();
-                if (password.getPassword().equals(registro.getPassword())) {
+                Cuenta cuenta = cuentaUsuario.get();
+                if (cuenta.getPassword().equals(registro.getPassword())) {
+                    registro.setNumeroIdentificacion(cuenta.getUsuario().getNumeroIdentificacion());
                     registro.setError(false);
                 } else {
                     registro.setError(true);

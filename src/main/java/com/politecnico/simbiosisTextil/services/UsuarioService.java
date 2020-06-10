@@ -21,6 +21,7 @@ public class UsuarioService {
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
             Perfil perfil = new Perfil();
+            perfil.setId(usuario.getNumeroIdentificacion());
             perfil.setNombre(String.format("%s %s", usuario.getNombre(), usuario.getApellido()));
             return perfil;
         } else {
