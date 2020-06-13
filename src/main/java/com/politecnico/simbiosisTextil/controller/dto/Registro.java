@@ -13,6 +13,7 @@ public class Registro {
     private String nombreEmpresa;
     private String tipoUsuario;
     private String correo;
+    private String newPassword;
     private boolean error;
 
     public String getUsuario() {
@@ -109,6 +110,14 @@ public class Registro {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     public boolean isError() {

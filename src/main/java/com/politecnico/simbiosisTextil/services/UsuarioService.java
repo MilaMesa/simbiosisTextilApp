@@ -9,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -33,7 +30,10 @@ public class UsuarioService {
                 perfil.setNombre(usuario.getNombreEmpresa());
             }
             StringBuilder sbf = new StringBuilder();
-            perfil.setTelefono(sbf.append(usuario.getTelefono()).toString());
+            if (0 < usuario.getTelefono().length) {
+                
+                perfil.setTelefono(sbf.append(usuario.getTelefono()).toString());
+            }
             perfil.setCelular(usuario.getCelular());
             perfil.setCorreo(usuario.getCorreo());
             perfil.setDireccion(usuario.getDireccion());

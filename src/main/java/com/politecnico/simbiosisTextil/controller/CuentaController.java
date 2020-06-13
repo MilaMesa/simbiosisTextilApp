@@ -16,4 +16,9 @@ public class CuentaController {
     public Registro crearCuentaUsuario(@RequestBody Registro registro){
         return cuentaService.crearCuenta(registro);
     }
+
+    @PostMapping("/actualizar")
+    public Registro actualizarCuentaUsuario(@RequestBody Registro registro) {
+        return cuentaService.actualizarCuenta(registro);
+    }
 }

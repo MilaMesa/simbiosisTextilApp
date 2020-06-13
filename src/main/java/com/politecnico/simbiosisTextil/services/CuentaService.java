@@ -124,4 +124,61 @@ public class CuentaService {
     private boolean existeNombreUsuario(String usuario) {
         return cuentaDao.findById(usuario).isPresent();
     }
+
+    public Registro actualizarCuenta(Registro registro) {
+        validarDatosObligatoriosActualizacion(registro);
+        Optional<Cuenta> cuentaOptional = cuentaDao.findById(registro.getUsuario());
+        if (cuentaOptional.isPresent()) {
+            Cuenta cuenta = cuentaOptional.get();
+            if (registro.getPassword().equals(cuenta.getPassword())) {
+                if (!StringUtils.isNullOrEmpty(registro.getNewPassword())) {
+                    cuenta.setPassword(registro.getNewPassword());
+                }
+                Usuario usuario = cuenta.getUsuario();
+                if (TipoUsuario.TALLER.equals(usuario.getTipoUsuario())) {
+                    String[] nombrecompleto = registro.getNombre().split(" ");
+                    if (2 == nombrecompleto.length) {
+                        usuario.setNombre(nombrecompleto[0]);
+                        usuario.setApellido(nombrecompleto[1]);
+                    } else {
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El nombre completo del usuario solo debe estar compuesto por 2 palabras");
+                    }
+                } else {
+                    usuario.setNombreEmpresa(registro.getNombre());
+                }
+                usuario.setCorreo(registro.getCorreo());
+                char[] nuevoTelefono = new char[7];
+                registro.getTelefono().getChars(0, 7, nuevoTelefono, 0);
+                usuario.setTelefono(nuevoTelefono);
+                usuario.setCelular(registro.getCelular());
+                usuario.setCorreo(registro.getCorreo());
+                usuario.setDireccion(registro.getDireccion());
+                cuenta.setUsuario(usuario);
+                cuentaDao.save(cuenta);
+            }
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "La contraseña no correponde a la contraseña actual");
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro la cuenta para la que se desean actualizar los datos");
+    }
+
+    private void validarDatosObligatoriosActualizacion(Registro registro) {
+        if (null == registro) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se recibio la informacion para el registro.");
+        }
+        if (!existeUsuario(registro.getNumeroIdentificacion())) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "No existe el usuario que intenta actualizar");
+        }
+        if (StringUtils.isNullOrEmpty(registro.getUsuario())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se recibio el usuario para el registro.");
+        }
+        if (StringUtils.isNullOrEmpty(registro.getNombre())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se recibio el nombre para el registro.");
+        }
+        if (StringUtils.isNullOrEmpty(registro.getCelular())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se recibio el celular para el registro.");
+        }
+        if (StringUtils.isNullOrEmpty(registro.getCorreo())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se recibio el correo para el registro.");
+        }
+    }
 }
