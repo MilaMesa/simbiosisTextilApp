@@ -29,11 +29,14 @@ public class UsuarioService {
             } else {
                 perfil.setNombre(usuario.getNombreEmpresa());
             }
-            StringBuilder sbf = new StringBuilder();
-            if (0 < usuario.getTelefono().length) {
-                
-                perfil.setTelefono(sbf.append(usuario.getTelefono()).toString());
+            char[] telefono = usuario.getTelefono();
+            StringBuffer sbf = new StringBuffer();
+            for (int i = 0; i < telefono.length; i++) {
+                if (telefono[i] != '\u0000') {
+                    sbf.append(telefono[i]);
+                }
             }
+            perfil.setTelefono(sbf.toString().trim());
             perfil.setCelular(usuario.getCelular());
             perfil.setCorreo(usuario.getCorreo());
             perfil.setDireccion(usuario.getDireccion());

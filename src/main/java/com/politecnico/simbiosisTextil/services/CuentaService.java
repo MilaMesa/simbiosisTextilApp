@@ -148,13 +148,14 @@ public class CuentaService {
                 }
                 usuario.setCorreo(registro.getCorreo());
                 char[] nuevoTelefono = new char[7];
-                registro.getTelefono().getChars(0, 7, nuevoTelefono, 0);
+                registro.getTelefono().getChars(0, registro.getTelefono().length(), nuevoTelefono, 0);
                 usuario.setTelefono(nuevoTelefono);
                 usuario.setCelular(registro.getCelular());
                 usuario.setCorreo(registro.getCorreo());
                 usuario.setDireccion(registro.getDireccion());
                 cuenta.setUsuario(usuario);
                 cuentaDao.save(cuenta);
+                return registro;
             }
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "La contraseña no correponde a la contraseña actual");
         }
