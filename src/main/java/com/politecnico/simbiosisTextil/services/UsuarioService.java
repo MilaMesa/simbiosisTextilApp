@@ -31,9 +31,9 @@ public class UsuarioService {
             }
             char[] telefono = usuario.getTelefono();
             StringBuffer sbf = new StringBuffer();
-            for (int i = 0; i < telefono.length; i++) {
-                if (telefono[i] != '\u0000') {
-                    sbf.append(telefono[i]);
+            for (char c : telefono) {
+                if (c != '\u0000') {
+                    sbf.append(c);
                 }
             }
             perfil.setTelefono(sbf.toString().trim());
