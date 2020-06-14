@@ -1,23 +1,22 @@
-package com.politecnico.simbiosisTextil.entity.dao;
+package com.politecnico.simbiosisTextil.controller.dto;
 
-import javax.persistence.*;
+import com.politecnico.simbiosisTextil.entity.dao.TipoOferta;
+import com.politecnico.simbiosisTextil.entity.dao.Usuario;
+
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "OFERTA")
-public class Oferta {
-    @Id
-    @Column(name = "Id_Of", length = 30, nullable = false)
+public class Publicacion {
+
     private long id;
-    @Column(name = "Fecha_Of", nullable = false)
     private LocalDate fecha;
-    @Column(name = "Tipo_Of", nullable = false)
     private TipoOferta tipoOferta;
-    @Column(name = "Detalle_Of", length = 900, nullable = false)
     private String detalle;
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Usuario_Of", referencedColumnName = "NumeroIdentificacion_Us", nullable= false)
-    private Usuario usuario;
+    private long numeroIdentificacion;
+    private String usuario;
 
     public long getId() {
         return id;
@@ -51,11 +50,19 @@ public class Oferta {
         this.detalle = detalle;
     }
 
-    public Usuario getUsuario() {
+    public long getNumeroIdentificacion() {
+        return numeroIdentificacion;
+    }
+
+    public void setNumeroIdentificacion(long numeroIdentificacion) {
+        this.numeroIdentificacion = numeroIdentificacion;
+    }
+
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 }
