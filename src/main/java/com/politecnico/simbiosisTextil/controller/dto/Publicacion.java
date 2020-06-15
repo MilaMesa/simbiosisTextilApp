@@ -1,12 +1,7 @@
 package com.politecnico.simbiosisTextil.controller.dto;
 
 import com.politecnico.simbiosisTextil.entity.dao.TipoOferta;
-import com.politecnico.simbiosisTextil.entity.dao.Usuario;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 public class Publicacion {

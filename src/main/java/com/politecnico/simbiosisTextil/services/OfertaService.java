@@ -19,13 +19,13 @@ public class OfertaService {
         List<Publicacion> list = new ArrayList<>();
         all.forEach(
                 oferta -> {
-                    list.add(crearPublicacion(oferta));
+                    list.add(obtenerPublicacion(oferta));
                 }
         );
         return list;
     }
 
-    private Publicacion crearPublicacion(Oferta oferta) {
+    private Publicacion obtenerPublicacion(Oferta oferta) {
         Publicacion publicacion = new Publicacion();
         publicacion.setId(oferta.getId());
         publicacion.setDetalle(publicacion.getDetalle());

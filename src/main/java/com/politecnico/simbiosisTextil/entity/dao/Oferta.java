@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Table(name = "OFERTA")
 public class Oferta {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id_Of", length = 30, nullable = false)
     private long id;
     @Column(name = "Fecha_Of", nullable = false)
@@ -16,7 +17,7 @@ public class Oferta {
     @Column(name = "Detalle_Of", length = 900, nullable = false)
     private String detalle;
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Usuario_Of", referencedColumnName = "NumeroIdentificacion_Us", nullable= false)
+    @JoinColumn(name = "Usuario_Of", referencedColumnName = "NumeroIdentificacion_Us", nullable = false)
     private Usuario usuario;
 
     public long getId() {
