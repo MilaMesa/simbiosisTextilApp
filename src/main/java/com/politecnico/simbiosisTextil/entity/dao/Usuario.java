@@ -1,6 +1,7 @@
 package com.politecnico.simbiosisTextil.entity.dao;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "USUARIO")
@@ -28,13 +29,11 @@ public class Usuario {
     private String correo;
     @OneToOne(mappedBy = "usuario")
     private Cuenta cuenta;
+    @OneToMany(mappedBy = "usuario")
+    private Set<Oferta> ofertas;
 
     public Long getNumeroIdentificacion() {
         return numeroIdentificacion;
-    }
-
-    public void setNumeroIdentificacion(Long numeroIdentificacion) {
-        this.numeroIdentificacion = numeroIdentificacion;
     }
 
     public TipoIdentificacion getTipoIdentificacion() {
@@ -115,5 +114,17 @@ public class Usuario {
 
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
+    }
+
+    public void setNumeroIdentificacion(long numeroIdentificacion) {
+        this.numeroIdentificacion = numeroIdentificacion;
+    }
+
+    public Set<Oferta> getOfertas() {
+        return ofertas;
+    }
+
+    public void setOfertas(Set<Oferta> ofertas) {
+        this.ofertas = ofertas;
     }
 }

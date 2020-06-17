@@ -16,7 +16,7 @@ public class Oferta {
     private TipoOferta tipoOferta;
     @Column(name = "Detalle_Of", length = 900, nullable = false)
     private String detalle;
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "Usuario_Of", referencedColumnName = "NumeroIdentificacion_Us", nullable = false)
     private Usuario usuario;
 
