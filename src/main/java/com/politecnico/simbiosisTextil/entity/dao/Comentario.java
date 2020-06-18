@@ -8,6 +8,7 @@ import java.time.LocalTime;
 @Table(name = "COMENTARIO")
 public class Comentario {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id_Com", length = 30)
     private long id;
     @Column(name = "Mensaje_com", length = 900, nullable = false)
@@ -18,10 +19,10 @@ public class Comentario {
     private LocalDate fecha;
     @Column(name = "Valoracion_Com", nullable = false)
     private int valoracion;
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UsuarioCreacion_Com", referencedColumnName = "NumeroIdentificacion_Us", nullable = false)
     private Usuario usuarioCreacion;
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Usuario_Com", referencedColumnName = "NumeroIdentificacion_Us", nullable = false)
     private Usuario usuario;
 

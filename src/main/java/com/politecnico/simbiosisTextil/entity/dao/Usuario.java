@@ -31,6 +31,10 @@ public class Usuario {
     private Cuenta cuenta;
     @OneToMany(mappedBy = "usuario")
     private Set<Oferta> ofertas;
+    @OneToMany(mappedBy = "usuario")
+    private Set<Comentario> comentariosCreados;
+    @OneToMany(mappedBy = "usuarioCreacion")
+    private Set<Comentario> comentarios;
 
     public Long getNumeroIdentificacion() {
         return numeroIdentificacion;

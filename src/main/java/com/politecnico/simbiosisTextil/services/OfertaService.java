@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,5 +78,20 @@ public class OfertaService {
         if (!usuarioDao.existsById(publicacion.getNumeroIdentificacion())) {
             throw new ResponseStatusException(HttpStatus.FAILED_DEPENDENCY, "El numero de identificacion no corresponde a ningun usuario registrado.");
         }
+    }
+
+    public Publicacion getOferta(long id) {
+        Optional<Oferta> ofertaOptional = ofertaDao.findById(id);
+        if (ofertaOptional.isPresent()) {
+            Oferta oferta = ofertaOptional.get();
+            Publicacion publicacion = new Publicacion();
+            publicacion.setDetalle(oferta.getDetalle());
+            publicacion.setTipoOferta(oferta.getTipoOferta());
+            publicacion.setFecha(oferta.getFecha());
+            publicacion.setNumeroIdentificacion(oferta.getUsuario().getNumeroIdentificacion());
+            publicacion.setUsuario(oferta.getUsuario().getCuenta().getNombreUsuario());
+            return publicacion;
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro la oferta Que esta buscando");
     }
 }

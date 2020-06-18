@@ -23,4 +23,10 @@ public class OfertaController {
     public Publicacion crearPublicacion(@RequestBody Publicacion publicacion) {
         return ofertaService.crearOferta(publicacion);
     }
+
+    @GetMapping("/{id}")
+    public Publicacion obtenerOferta(@PathVariable(value = "id") long id) {
+        return ofertaService.getOferta(id);
+    }
+
 }
