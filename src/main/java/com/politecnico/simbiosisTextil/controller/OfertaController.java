@@ -14,7 +14,7 @@ public class OfertaController {
     @Autowired
     private OfertaService ofertaService;
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public List<Publicacion> getPublicaciones(){
         return ofertaService.getOfertas();
     }
