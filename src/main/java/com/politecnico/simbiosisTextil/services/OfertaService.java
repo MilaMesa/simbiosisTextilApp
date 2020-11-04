@@ -38,6 +38,8 @@ public class OfertaService {
         Publicacion publicacion = new Publicacion();
         publicacion.setId(oferta.getId());
         publicacion.setDetalle(oferta.getDetalle());
+        publicacion.setFecha(oferta.getFecha());
+        publicacion.setTipoOferta(oferta.getTipoOferta());
         if (null != oferta.getUsuario()) {
             publicacion.setNumeroIdentificacion(oferta.getUsuario().getNumeroIdentificacion());
             publicacion.setUsuario(oferta.getUsuario().getCuenta().getNombreUsuario());
