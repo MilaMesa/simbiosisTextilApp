@@ -29,4 +29,9 @@ public class OfertaController {
         return ofertaService.getOferta(id);
     }
 
+    @PostMapping("/eliminar/{id}")
+    public void eliminarOferta(@PathVariable(value = "id") long id) {
+        ofertaService.eliminarOferta(id);
+    }
+
 }

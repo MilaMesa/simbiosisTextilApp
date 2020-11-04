@@ -96,4 +96,8 @@ public class OfertaService {
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro la oferta Que esta buscando");
     }
+
+    public void eliminarOferta(long id) {
+        ofertaDao.deleteById(id);
+    }
 }
