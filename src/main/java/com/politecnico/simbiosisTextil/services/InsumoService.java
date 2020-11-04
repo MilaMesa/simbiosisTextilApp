@@ -17,7 +17,7 @@ public class InsumoService {
 
     public InsumoDto pedirInsumo(long codigo, int cantidad) {
         Insumo insumo = insumoDao.actualizarCantidadInsumos(codigo, cantidad);
-        InsumoDto insumoDto=new InsumoDto();
+        InsumoDto insumoDto = new InsumoDto();
         insumoDto.setValor(insumo.getValor());
         insumoDto.setCantidad(insumo.getCantidad());
         insumoDto.setCodigo(insumo.getCodigo());

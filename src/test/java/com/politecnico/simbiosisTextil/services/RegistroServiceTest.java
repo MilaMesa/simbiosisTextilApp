@@ -3,6 +3,7 @@ package com.politecnico.simbiosisTextil.services;
 import com.politecnico.simbiosisTextil.controller.dto.Registro;
 import com.politecnico.simbiosisTextil.entity.CuentaDao;
 import com.politecnico.simbiosisTextil.entity.dao.Cuenta;
+import com.politecnico.simbiosisTextil.entity.dao.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -27,6 +28,7 @@ class RegistroServiceTest {
         Cuenta cuentaBd = new Cuenta();
         cuentaBd.setNombreUsuario("usuario2");
         cuentaBd.setPassword("123");
+        cuentaBd.setUsuario(new Usuario());
         Mockito.when(cuentaDao.findById("usuario2")).thenReturn(Optional.of(cuentaBd));
         Registro registroFront = new Registro();
         registroFront.setUsuario("usuario2");
