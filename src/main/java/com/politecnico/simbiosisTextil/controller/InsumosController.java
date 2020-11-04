@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/insumo")
-public class Insumoscontroller {
+public class InsumosController {
     @Autowired
     private InsumoService insumoService;
 
@@ -30,7 +30,7 @@ public class Insumoscontroller {
     }
 
     @PostMapping("/{codigo}/actualizar/{cantidad}")
-    public InsumoDto actualizarInsumo(@PathVariable(value = "codigo") long codigo, @PathVariable(value = "cantidad") int cantidad) {
+    public int actualizarInsumo(@PathVariable(value = "codigo") long codigo, @PathVariable(value = "cantidad") int cantidad) {
         return insumoService.pedirInsumo(codigo, cantidad);
     }
 }

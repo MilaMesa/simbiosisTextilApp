@@ -15,19 +15,8 @@ public class InsumoService {
     @Autowired
     private InsumoDao insumoDao;
 
-    public InsumoDto pedirInsumo(long codigo, int cantidad) {
-        Insumo insumo = insumoDao.actualizarCantidadInsumos(codigo, cantidad);
-        InsumoDto insumoDto = new InsumoDto();
-        insumoDto.setValor(insumo.getValor());
-        insumoDto.setCantidad(insumo.getCantidad());
-        insumoDto.setCodigo(insumo.getCodigo());
-        insumoDto.setColor(insumo.getColor());
-        insumoDto.setDetalles(insumo.getDetalles());
-        insumoDto.setForma(insumo.getForma());
-        insumoDto.setMaterial(insumo.getMaterial());
-        insumoDto.setReferenciaConfeccion(insumo.getReferenciaConfeccion());
-        insumoDto.setTamaño(insumo.getTamaño());
-        return insumoDto;
+    public int pedirInsumo(long codigo, int cantidad) {
+        return insumoDao.actualizarCantidadInsumos(codigo, cantidad);
     }
 
     public List<InsumoDto> inventarioInsumo() {
