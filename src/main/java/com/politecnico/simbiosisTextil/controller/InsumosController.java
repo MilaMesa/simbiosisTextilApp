@@ -35,7 +35,7 @@ public class InsumosController {
     }
 
     @PostMapping("/crear")
-    public InsumoDto crearInsumo(InsumoDto insumoDto) {
+    public InsumoDto crearInsumo(@RequestBody InsumoDto insumoDto) {
         return insumoService.crearInsumo(insumoDto);
     }
 }
