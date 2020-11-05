@@ -33,4 +33,9 @@ public class InsumosController {
     public int actualizarInsumo(@PathVariable(value = "codigo") long codigo, @PathVariable(value = "cantidad") int cantidad) {
         return insumoService.pedirInsumo(codigo, cantidad);
     }
+
+    @PostMapping("/crear")
+    public InsumoDto crearInsumo(InsumoDto insumoDto) {
+        return insumoService.crearInsumo(insumoDto);
+    }
 }

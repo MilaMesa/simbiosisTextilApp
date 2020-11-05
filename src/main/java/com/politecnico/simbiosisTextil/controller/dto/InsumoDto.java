@@ -10,6 +10,7 @@ public class InsumoDto {
     private float valor;
     private String referenciaConfeccion;
     private String detalles;
+    private long identificacionUsuario;
 
     public long getCodigo() {
         return codigo;
@@ -81,5 +82,13 @@ public class InsumoDto {
 
     public void setDetalles(String detalles) {
         this.detalles = detalles;
+    }
+
+    public long getIdentificacionUsuario() {
+        return identificacionUsuario;
+    }
+
+    public void setIdentificacionUsuario(long identificacionUsuario) {
+        this.identificacionUsuario = identificacionUsuario;
     }
 }
