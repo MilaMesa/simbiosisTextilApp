@@ -19,6 +19,11 @@ public class InsumosController {
         return insumoService.inventarioInsumo();
     }
 
+    @GetMapping("/all/{identificacion}")
+    public List<InsumoDto> obtenetTodosLosInsumosDelUsuario(@PathVariable(value = "identificacion") long identificacion) {
+        return insumoService.inventarioInsumo(identificacion);
+    }
+
     @GetMapping("/agotado")
     public List<InsumoDto> obtenerInsumosAgotados() {
         return insumoService.insumosAgotados();

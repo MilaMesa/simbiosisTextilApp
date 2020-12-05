@@ -5,9 +5,11 @@ import com.politecnico.simbiosisTextil.entity.InsumoDao;
 import com.politecnico.simbiosisTextil.entity.UsuarioDao;
 import com.politecnico.simbiosisTextil.entity.dao.Insumo;
 import com.politecnico.simbiosisTextil.entity.dao.Usuario;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,9 +48,23 @@ public class InsumoService {
         return insumoDao.actualizarCantidadInsumos(codigo, cantidad);
     }
 
-    public List<InsumoDto> inventarioInsumo() {
-        Iterable<Insumo> insumos = insumoDao.findAll();
+    public List<InsumoDto> inventarioInsumo(long identificacion) {
+        Iterable<Insumo> insumos;
+        try {
+            insumos = insumoDao.findByUserId(identificacion);
+        } catch (NoResultException e) {
+            insumos = new ArrayList<>();
+        }
+        return getInsumoDtos(insumos);
+    }
 
+    public List<InsumoDto> inventarioInsumo() {
+        Iterable<Insumo> insumos;
+        try {
+            insumos = insumoDao.findAll();
+        } catch (NoResultException e) {
+            insumos = new ArrayList<>();
+        }
         return getInsumoDtos(insumos);
     }
 

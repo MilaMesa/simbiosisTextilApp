@@ -19,4 +19,7 @@ public interface InsumoDao extends CrudRepository<Insumo, Long> {
 
     @Query("select i from Insumo i where i.codigo=:codigo and i.cantidad=0")
     Iterable<Insumo> buscarAgotadoPorCodigo(@Param("codigo") long codigo);
+
+    @Query("select i from Insumo i where i.usuario.numeroIdentificacion = :identificacion")
+    Iterable<Insumo> findByUserId(@Param("identificacion") long identificacion);
 }
