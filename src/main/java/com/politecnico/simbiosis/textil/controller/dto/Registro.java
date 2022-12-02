@@ -15,6 +15,7 @@ public class Registro {
     private String correo;
     private String newPassword;
     private boolean error;
+    private String token;
 
     public String getUsuario() {
         return usuario;
@@ -126,5 +127,13 @@ public class Registro {
 
     public void setError(boolean error) {
         this.error = error;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
