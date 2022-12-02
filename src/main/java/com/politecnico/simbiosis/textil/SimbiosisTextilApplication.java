@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 @SpringBootApplication
 public class SimbiosisTextilApplication {
@@ -26,7 +27,9 @@ public class SimbiosisTextilApplication {
             http.csrf().disable()
                     .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
+                    .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                     .antMatchers(HttpMethod.POST, "/login/").permitAll()
+                    .antMatchers(HttpMethod.POST, "/cuenta/crear").permitAll()
                     .anyRequest().authenticated();
         }
     }

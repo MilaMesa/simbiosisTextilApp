@@ -12,7 +12,7 @@ public class Perfilcontroller {
     @Autowired
     private UsuarioService usuarioService;
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public Perfil getPerfilById(@PathVariable(value = "id") Long identificacion) {
         return usuarioService.getPerfil(identificacion);

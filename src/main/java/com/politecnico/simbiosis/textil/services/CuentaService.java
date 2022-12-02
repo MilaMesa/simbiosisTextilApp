@@ -8,6 +8,7 @@ import com.politecnico.simbiosis.textil.entity.dao.Cuenta;
 import com.politecnico.simbiosis.textil.entity.dao.TipoIdentificacion;
 import com.politecnico.simbiosis.textil.entity.dao.TipoUsuario;
 import com.politecnico.simbiosis.textil.entity.dao.Usuario;
+import com.politecnico.simbiosis.textil.security.JwtCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class CuentaService {
                 if (cuenta.getPassword().equals(registro.getPassword())) {
                     registro.setNumeroIdentificacion(cuenta.getUsuario().getNumeroIdentificacion());
                     registro.setError(false);
+                    registro.setToken(JwtCreator.getJWTToken(cuenta.getNombreUsuario()));
                 } else {
                     registro.setError(true);
                 }
@@ -46,6 +48,7 @@ public class CuentaService {
         Cuenta cuentaUsuario = validarYObtenerDatosDelRegistro(registro);
         cuentaDao.save(cuentaUsuario);
         registro.setError(false);
+        registro.setToken(JwtCreator.getJWTToken(cuentaUsuario.getNombreUsuario()));
         return registro;
     }
 
